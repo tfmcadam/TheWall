@@ -1,0 +1,40 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(rgb(216, 209, 209), rgb(90, 76, 56));
+  /* background-image: url('../WoodenWall.jpg'); */
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+.logReg{
+  position: absolute;
+  top: 26%;
+  left:25%;
+  width: 50%;
+  border: 4px solid black;
+  border-radius: 25px;
+  background: linear-gradient(rgb(216, 209, 209), rgb(90, 76, 56));
+  padding: 3%;
+}
+
+  
+
+
+
+
+
+

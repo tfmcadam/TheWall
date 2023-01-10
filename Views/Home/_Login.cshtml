@@ -1,0 +1,23 @@
+@model LogUser
+
+<div>
+    <h1 class="display-4">Login</h1>
+    <form asp-action="LoginUser" asp-controller="Home" method="post">
+        <div>
+            <label asp-for="LEmail"></label>
+            <input asp-for="LEmail" class="form-control">
+        </div>
+        <div>
+            <label asp-for="LPassword"></label>
+            <input asp-for="LPassword" class="form-control">
+
+        </div>
+        <input type="submit" value="Login" class="btn btn-dark m-3">
+
+        @* Validations for email and Password *@
+        <div>
+
+            <span asp-validation-for="LEmail" class="text-danger"></span>
+        </div>
+    </form>
+</div>

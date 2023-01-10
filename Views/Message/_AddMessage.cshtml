@@ -1,0 +1,10 @@
+@model Message
+
+<form asp-action="NewMessage" asp-controller="Message" method="post">
+    <input type="hidden" asp-for="UserId" value="@Model.UserId">
+    <div>
+        <label asp-for="MessageText">Add a POst</label>
+        <input asp-for="MessageText" class="form-control">
+        <input type="submit" value="Post" class="btn">
+    </div>
+</form>

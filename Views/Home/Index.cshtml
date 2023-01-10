@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+@model User
+
+        <div class="logReg">
+            @* add register form *@
+            @await Html.PartialAsync("_Register")
+            @* Add login form through partial *@
+            @await Html.PartialAsync("_Login")
+        </div>
+    
+    

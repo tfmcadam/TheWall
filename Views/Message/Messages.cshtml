@@ -1,0 +1,16 @@
+@model MessageModel
+
+<div>
+    Welcome, @Model.User.UserId
+
+
+    @* <form asp-action="NewMessage" asp-controller="Message" method="post">
+        <input type="hidden" asp-for="userId" value="@">
+        <div>
+            <label asp-for="MessageText">Add a Post</label>
+            <input asp-for="MessageText" class="form-control">
+            <input type="submit" value="Post" class="btn">
+        </div>
+    </form> *@
+    @await Html.PartialAsync("_AddMessage")
+</div>
