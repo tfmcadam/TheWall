@@ -1,0 +1,15 @@
+@model Comment
+
+<form asp-action="newComment" asp-controller="Message" method="post">
+    <div class="d-flex justify-content-center">
+        <div class="form-floating mb-3">
+            <input type="hidden" asp-for="MessageId" value="@Model.MessageId">
+            <input type="text" asp-for="CommentText" class="form-control" id="floatingInput">
+            <label class="text-center" for="floatingInput">Comments?</label>
+        </div>
+        <span asp-validation-for="CommentText" class="text-danger"></span>
+    </div>
+        <div class="d-flex justify-content-center">
+            <input type="submit" value="Add Comment" class="btn">
+        </div>
+</form>

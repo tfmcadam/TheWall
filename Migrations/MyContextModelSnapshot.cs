@@ -29,8 +29,14 @@ namespace TheWall.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("MessageId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -52,6 +58,10 @@ namespace TheWall.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("MessageImg")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("MessageText")
                         .IsRequired()
@@ -97,6 +107,10 @@ namespace TheWall.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserImg")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId");
 

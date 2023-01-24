@@ -27,6 +27,8 @@ public class User
     [MinLength(8)]
     public string Password {get;set;}
 
+    public string UserImg {get;set;}
+
     public DateTime CreatedAt {get;set;} = DateTime.Now;
     public DateTime UpdatedAt {get;set;} = DateTime.Now;
 

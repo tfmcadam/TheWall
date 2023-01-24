@@ -7,9 +7,11 @@ public class Message
     [Key]
     public int MessageId {get;set;}
 
-    [Required]
+    [Required(ErrorMessage ="Please Add a Post")]
     [Display(Name="Message")]
     public string MessageText {get;set;}
+
+    public string MessageImg { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;

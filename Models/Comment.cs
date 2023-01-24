@@ -7,8 +7,11 @@ public class Comment
     [Key]
     public int CommentId {get;set;}
 
-    [Required]
+    [Required(ErrorMessage ="Comment is Required")]
     public string CommentText {get;set;}
+
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
     public int UserId {get;set;}
     public int MessageId {get;set;}
