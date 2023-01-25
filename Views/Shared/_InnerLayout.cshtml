@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+@{
+    int userId = 0;
+    int? sessionId = Context.Session.GetInt32("UserId");
+    if (sessionId != null)
+    {
+        userId = (int)sessionId;
+    }
+}
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,10 +39,16 @@
 
                         </li>
                     </ul>
-                    <div class="d-flex align-items-center">
-                        <Form asp-action="Logout" asp-controller="Home">
-                            <input type="submit" value="Logout" class="btn">
-                        </Form>
+                    <a class="btn" href="user/images">Image Trial</a>
+
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn">My Account</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="user/@userId/edit">Update</a>
+                            <Form asp-action="Logout" asp-controller="Home">
+                                <input type="submit" value="Logout" class="btn">
+                            </Form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,7 +62,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - The Wall 
+            &copy; 2023 - The Wall
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
