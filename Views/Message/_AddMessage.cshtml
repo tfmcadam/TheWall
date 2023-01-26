@@ -1,9 +1,10 @@
 @model Message
-<div class="d-flex justify-content-center">
+<div class="w-50 mx-auto">
     <form asp-action="CreateMessage" asp-controller="Message" method="post">
         <div class="form-floating mb-3">
+            <input type="hidden" asp-for="MessageImg" value="none">
             <input type="text" asp-for="MessageText" class="form-control" id="floatingInput" placeholder="Add a post">
-            <label for="floatingInput">Add a Post</label>
+            <label for="floatingInput" class="text-center">Add a Post</label>
         </div>
             <span asp-validation-for="MessageText" class="text-danger"></span>
         <div class="d-flex justify-content-center">

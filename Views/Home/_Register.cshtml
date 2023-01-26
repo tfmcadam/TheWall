@@ -6,6 +6,10 @@
         <h1 class="display-4">Register</h1>
         <form asp-action="CreateUser" asp-controller="Home" method="post">
             <div>
+                <input type="hidden"asp-for="UserImg" class="form-control" placeholder="UserImage.png" value="../UserImage.jpg">
+                <span asp-validation-for="UserImg" class="text-danger"></span>
+            </div>
+            <div>
                 <label asp-for="FirstName"></label>
                 <input asp-for="FirstName" class="form-control">
                 <span asp-validation-for="FirstName" class="text-danger"></span>

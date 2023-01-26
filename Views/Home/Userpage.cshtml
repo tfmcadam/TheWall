@@ -1,0 +1,14 @@
+@model User
+
+<div class="UserCard">
+    <div class="d-flex justify-content-evenly align-items-center mb-3">
+        <img class="userImageSingle" src="@Model.UserImg" alt="User" srcset="">
+        <div class="d-flex gap-2">
+            <h4>@Model.FirstName</h4>
+            <h4>@Model.LastName</h4>
+        </div>
+    </div>
+    <p>@Model.Email</p>
+    <p> Messages: @Model.Messages.Count</p>
+    <p> Total Comments: @Model.Comments.Count</p>
+</div>

@@ -1,25 +1,12 @@
+@{
+    ViewData["Title"] = "Messages";
+    Layout = "_InnerLayout";
+}
 @model MessageModel
 
 <div>
-    <h1 class="text-center">Welcome, @Model.User.FirstName @Model.User.LastName</h1>
-    <script>
-    function updateTime() {
-        var elements = document.getElementsByClassName("time-elapsed");
-        for (var i = 0; i < elements.length; i++) {
-            var postedAt = elements[i].getAttribute("data-posted-at");
-            var timeElapsed = new Date() - new Date(postedAt);
-            var seconds = Math.floor(timeElapsed / 1000);
-            var minutes = Math.floor(seconds / 60);
-            var hours = Math.floor(minutes / 60);
-            var days = Math.floor(hours / 24);
-            seconds = seconds % 60;
-            minutes = minutes % 60;
-            hours = hours % 24;
-            elements[i].innerHTML = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " minutes ago";
-        }
-    }
-    setInterval(updateTime, 1000);
-    </script>
+    <h1 class="text-center">Welcome, <img class="userImage" src="@Model.User.UserImg" alt="User" srcset=""> @Model.User.FirstName @Model.User.LastName</h1>
+    
 
     @await Html.PartialAsync("_AddMessage", Model.Message)
 </div>
@@ -29,7 +16,7 @@
 
         <div class="border border-dark rounded mt-3 shadow">
             
-            <p class="mt-2 ms-2">Posted by: @m.User.FirstName </p>
+            <p class="mt-2 ms-2">Posted by: <img class="userImagePost" src="@m.User.UserImg" alt="User Image"> <a href="user/@m.User.UserId">@m.User.FirstName </a></p>
             <p class="ms-2 time-elapsed" data-posted-at="@m.CreatedAt" id="timer"></p>
             <div class="d-flex justify-content-center mt-3">
 
@@ -53,7 +40,7 @@
                     {
                         <div class="m-3">
                             <h4>@c.CommentText</h4>
-                            <p>By: @c.User.FirstName</p>
+                            <p>By: <img class="userImagePost" src="@c.User.UserImg" alt="User Image"> <a class="btn" href="user/@m.User.UserId">@c.User.FirstName </a> </p>
 
                         </div>
 

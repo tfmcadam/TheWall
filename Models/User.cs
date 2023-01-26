@@ -17,9 +17,13 @@ public class User
     [MinLength(2)]
     public string LastName {get;set;}
     
+    [Image]
+    public string UserImg {get;set;}
+    
     [Required]
     [EmailAddress]
-    [UniqueEmail]
+    // [UniqueEmail]
+    [EmailExists]
     public string Email {get;set;}
 
     [DataType(DataType.Password)]
@@ -27,7 +31,6 @@ public class User
     [MinLength(8)]
     public string Password {get;set;}
 
-    public string UserImg {get;set;}
 
     public DateTime CreatedAt {get;set;} = DateTime.Now;
     public DateTime UpdatedAt {get;set;} = DateTime.Now;

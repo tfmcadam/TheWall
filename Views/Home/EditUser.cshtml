@@ -1,10 +1,13 @@
+@{
+    ViewData["Title"] = "Edit Accunt";
+}
 @model User
 
 
 <div class="d-flex justify-content-evenly gap-2">
     <div>
         <h1 class="display-4">Update Info</h1>
-        <form asp-action="UpdateUser" asp-controller="Home" 
+        <form asp-action="UpdateUser" asp-controller="Home"
         asp-route-userId="@Model.UserId"
         method="post">
             <div>
@@ -18,25 +21,24 @@
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             
-            @* <div>
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control">
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div> *@
-            <div>
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control">
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div>
-                <label asp-for="Confirm">Confirm Password</label>
-                <input asp-for="Confirm" class="form-control">
-                <span asp-validation-for="Confirm" class="text-danger"></span>
-            </div>
             <div>
                 <label asp-for="UserImg">Add an image</label>
                 <input asp-for="UserImg" class="form-control">
                 <span asp-validation-for="UserImg" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="Email"></label>
+                <input type="Email" asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div> 
+<div>
+                <input type="hidden" asp-for="Password" class="form-control" value="@Model.Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            <div>
+                <input type="hidden" asp-for="Confirm" class="form-control" value="@Model.Password">
+                <span asp-validation-for="Confirm" class="text-danger"></span>
             </div>
             <input type="submit" class="btn btn-dark m-3">
         </form>

@@ -41,7 +41,7 @@ public class HomeController : Controller
 
         if (ModelState.IsValid)
         {
-            
+
             // hash the password prior to saving
             PasswordHasher<User> Hasher = new PasswordHasher<User>();
             newUser.Password = Hasher.HashPassword(newUser, newUser.Password);
@@ -86,6 +86,61 @@ public class HomeController : Controller
         }
         return View("Index");
     }
+    [HttpGet("user/{userId}")]
+    public IActionResult UserPage(int userId)
+    {
+        User? OneUser = _context.Users.FirstOrDefault(user =>user.UserId == userId);
+        return View("UserPage", OneUser );
+    }
+
+    // Edit User page
+    [HttpGet("user/{userId}/edit")]
+    public IActionResult EditUser(int userId)
+    {
+        
+            User? UserToEdit = _context.Users.FirstOrDefault(u => u.UserId == userId);
+
+        return View(UserToEdit);
+    }
+
+// Update the user
+    [HttpPost("user/{userId}/update")]
+    public IActionResult UpdateUser(int userId, User UpdatedUser)
+    {
+        foreach (KeyValuePair<string, ModelStateEntry> error in ModelState)
+        {
+            Console.WriteLine("********** ERROR ********");
+            Console.WriteLine($"Field: {error.Key}");
+            foreach (ModelError err in error.Value.Errors)
+            {
+                Console.WriteLine($"Error: {err.ErrorMessage}");
+            }
+        }
+        User? UserToUpdate = _context.Users.FirstOrDefault(u => u.UserId == userId);
+        {
+            User? UserToEdit = _context.Users.FirstOrDefault(a => a.UserId == userId);
+            if (UserToUpdate == null)
+            {
+                return RedirectToAction("Messages", "Message");
+            }
+            if (ModelState.IsValid)
+            {
+                UserToUpdate.FirstName = UpdatedUser.FirstName;
+                UserToUpdate.LastName = UpdatedUser.LastName;
+                UserToUpdate.Email = UpdatedUser.Email;
+                UserToUpdate.Password = UpdatedUser.Password;
+                UserToUpdate.UserImg = UpdatedUser.UserImg;
+                UserToUpdate.UpdatedAt = DateTime.Now;
+                _context.SaveChanges();
+                return RedirectToAction("Messages", "Message", new { userId = userId });
+            }
+            else
+            {
+                return View("EditUser", UserToUpdate);
+            }
+
+        }
+    }
 
     // Logout
     [HttpPost("logout")]
@@ -93,6 +148,13 @@ public class HomeController : Controller
     {
         HttpContext.Session.Clear();
         return RedirectToAction("Index");
+    }
+
+    // user image trials
+    [HttpGet("user/images")]
+    public IActionResult Images()
+    {
+        return View("Images");
     }
 
     public IActionResult Privacy()
