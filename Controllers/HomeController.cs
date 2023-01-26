@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 
 using TheWall.Models;
@@ -89,7 +90,9 @@ public class HomeController : Controller
     [HttpGet("user/{userId}")]
     public IActionResult UserPage(int userId)
     {
-        User? OneUser = _context.Users.FirstOrDefault(user =>user.UserId == userId);
+        User? OneUser = _context.Users.Include(user => user.Messages)
+                        .Include(user => user.Comments)
+                        .FirstOrDefault(user =>user.UserId == userId);
         return View("UserPage", OneUser );
     }
 

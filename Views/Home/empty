@@ -1,0 +1,17 @@
+<!-- <div id="image-box" ondragstart="drag(event)" draggable="true">
+    <div id="image-box"></div>
+</div>
+<input type="file" id="image-input2" onchange="displayImage(event)">
+
+<select id="framing-select" onchange="applyFraming()">
+    <option value="none">None</option>
+    <option value="circle">Circle</option>
+    <option value="square">Square</option>
+</select>
+
+
+<input type="file" id="image-input" onchange="displayImage(event)">
+<div id="image-frame">
+    <div id="image-box" onmousedown="startMove(event)"></div>
+</div>
+<canvas id="image-canvas"></canvas> -->
