@@ -44,10 +44,13 @@
                         <div id="myDropdown" class="dropdown-content">
                             <a asp-area="" asp-controller="Home"
                             asp-route-userId="@userId"
+                            asp-action="UserPage">My Page</a>
+                            <a asp-area="" asp-controller="Home"
+                            asp-route-userId="@userId"
                             asp-action="EditUser">Update</a>
                             <a asp-area="" asp-controller="Home"
                             asp-route-userId="@userId"
-                            asp-action="UserPage">My Page</a>
+                            asp-action="ChangePassword">Update Password</a>
                             <Form asp-action="Logout" asp-controller="Home">
                                 <input type="submit" value="Logout" class="btn">
                             </Form>

@@ -21,7 +21,7 @@ public class MessageController : Controller
     }
 
 // Messages Page
-    // [SessionCheck]
+    [SessionCheck]
     [HttpGet("messages")]
     public IActionResult Messages()
     {
