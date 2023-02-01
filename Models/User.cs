@@ -22,7 +22,6 @@ public class User
     
     [Required]
     [EmailAddress]
-    // [UniqueEmail]
     [EmailExists]
     public string Email {get;set;}
 

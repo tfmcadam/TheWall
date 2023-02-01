@@ -36,8 +36,23 @@ function updateTime() {
         seconds = seconds % 60;
         minutes = minutes % 60;
         hours = hours % 24;
+        
         elements[i].innerHTML = days + " days " + hours + " hours " + minutes + " minutes " + seconds + " minutes ago";
+        }
     }
-}
+
 setInterval(updateTime, 1000);
+
+// Get the modal
+var modal = document.getElementById('logReg');
+var validLink = document.getElementById("http://localhost:5056/users/login").href
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    
+};
+
+
 

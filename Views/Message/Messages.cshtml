@@ -5,19 +5,22 @@
 @model MessageModel
 
 <div>
-    <h1 class="text-center">Welcome, <img class="userImage" src="@Model.User.UserImg" alt="User" srcset=""> @Model.User.FirstName @Model.User.LastName</h1>
-    
+    <h1 class="text-center">Welcome, <img class="userImage" src="@Model.User.UserImg" alt="User" srcset="">
+        @Model.User.FirstName @Model.User.LastName</h1>
+
 
     @await Html.PartialAsync("_AddMessage", Model.Message)
 </div>
 <div class="">
     @foreach (Message m in Model.AllMessages)
     {
-
-        <div class="border border-dark rounded mt-3 shadow">
-            
-            <p class="mt-2 ms-2">Posted by: <img class="userImagePost" src="@m.User.UserImg" alt="User Image"> <a href="user/@m.User.UserId">@m.User.FirstName </a></p>
-            <p class="ms-2 time-elapsed" data-posted-at="@m.CreatedAt" id="timer"></p>
+        @*backColor border border-dark rounded mt-3 shadow *@
+        <div class="messageCard m-2">
+            <div class="d-flex justify-content-between m-2">
+                <p class="mt-2 ms-2">Posted by: <img class="userImagePost" src="@m.User.UserImg" alt="User Image"> <a
+                        href="user/@m.User.UserId">@m.User.FirstName </a></p>
+                <p class="ms-2 time-elapsed" data-posted-at="@m.CreatedAt" id="timer"></p>
+            </div>
             <div class="d-flex justify-content-center mt-3">
 
                 <h3 class="text-center">@m.MessageText</h3>
@@ -25,36 +28,44 @@
                 {
                     <div>
                         <form asp-action="DestroyMessage" asp-controller="Message" asp-route-messageId="@m.MessageId"
-                    method="post">
+                            method="post">
                             <input type="submit" value="Delete" class="btn">
                         </form>
                     </div>
                 }
             </div>
-            <div class="border-top border-secondary m-3"></div>
-            <div class="">
-                <h5 class="text-center">Comments</h5>
+
+            @* User comments for Message *@
+
+            <a class="btn m-2" data-bs-toggle="collapse" href="#collapseExample_@m.MessageId" role="button"
+                aria-expanded="false" aria-controls="collapseExample_@m.MessageId">
+                See Comments
+            </a>
+            <div class="collapse" id="collapseExample_@m.MessageId">
                 @foreach (Comment c in Model.UserComments)
                 {
                     if (c.Message.MessageId == m.MessageId)
                     {
-                        <div class="m-3">
+                        <div id="" class="m-3">
+
                             <h4>@c.CommentText</h4>
-                            <p>By: <img class="userImagePost" src="@c.User.UserImg" alt="User Image"> <a class="btn" href="user/@m.User.UserId">@c.User.FirstName </a> </p>
-
+                            <p>By: <img class="userImagePost" src="@c.User.UserImg" alt="User Image"> <a class="btn"
+                                    href="user/@m.User.UserId">@c.User.FirstName </a> </p>
                         </div>
-
                     }
-
                 }
 
-                @{
-                    Comment comment = new Comment()
-                    {
-                        MessageId = m.MessageId
-                    };
-                    @await Html.PartialAsync("_AddComment", comment)
-                }
+                @* comment form *@
+                <div>
+                    @{
+                        Comment comment = new Comment()
+                {
+                    MessageId = m.MessageId
+                };
+                        @await Html.PartialAsync("_AddComment", comment)
+                    }
+                </div>
+
             </div>
         </div>
     }

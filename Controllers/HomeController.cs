@@ -79,7 +79,7 @@ public class HomeController : Controller
             var result = hasher.VerifyHashedPassword(loginUser, UserInDb.Password, loginUser.LPassword);
             if (result == 0)
             {
-                ModelState.AddModelError("LEmail", "Invalid Email/Password");
+                ModelState.AddModelError("LPassword", "Invalid Email/Password");
                 return View("Index");
             }
             HttpContext.Session.SetInt32("UserId", UserInDb.UserId);
@@ -92,21 +92,21 @@ public class HomeController : Controller
     {
         User? OneUser = _context.Users.Include(user => user.Messages)
                         .Include(user => user.Comments)
-                        .FirstOrDefault(user =>user.UserId == userId);
-        return View("UserPage", OneUser );
+                        .FirstOrDefault(user => user.UserId == userId);
+        return View("UserPage", OneUser);
     }
 
     // Edit User page
     [HttpGet("user/{userId}/edit")]
     public IActionResult EditUser(int userId)
     {
-        
-            User? UserToEdit = _context.Users.FirstOrDefault(u => u.UserId == userId);
+
+        User? UserToEdit = _context.Users.FirstOrDefault(u => u.UserId == userId);
 
         return View(UserToEdit);
     }
 
-// Update the user
+    // Update the user
     [HttpPost("user/{userId}/update")]
     public IActionResult UpdateUser(int userId, User UpdatedUser)
     {
@@ -144,6 +144,88 @@ public class HomeController : Controller
 
         }
     }
+
+    // Update the Password
+    [SessionCheck]
+    [HttpGet("user/{userId}/changepassword")]
+    public IActionResult ChangePassword(int userId)
+    {
+
+        User? NewPassword = _context.Users.FirstOrDefault(user => user.UserId == userId);
+
+        return View("ChangePassword", NewPassword);
+    }
+
+
+    [HttpPost("user/{userId}/updatepassword")]
+    public IActionResult UpdatePassword(int userId, User updatePassword)
+    {
+        User? UserToUpdate = _context.Users.FirstOrDefault(u => u.UserId == userId);
+        {
+            User? UserToEdit = _context.Users.FirstOrDefault(a => a.UserId == userId);
+            if (UserToUpdate == null)
+            {
+                return RedirectToAction("Messages", "Message");
+            }
+            if (ModelState.IsValid)
+            {
+                PasswordHasher<User> Hasher = new PasswordHasher<User>();
+                updatePassword.Password = Hasher.HashPassword(updatePassword, updatePassword.Password);
+
+                UserToUpdate.FirstName = updatePassword.FirstName;
+                UserToUpdate.LastName = updatePassword.LastName;
+                UserToUpdate.Email = updatePassword.Email;
+                UserToUpdate.Password = updatePassword.Password;
+                UserToUpdate.UserImg = updatePassword.UserImg;
+                UserToUpdate.UpdatedAt = DateTime.Now;
+                _context.SaveChanges();
+                return RedirectToAction("Userpage", new { userId = userId });
+            }
+            else
+            {
+                return View("ChangePassword", UserToUpdate);
+            }
+
+        }
+    }
+
+    // [HttpPost("user/{userId}/updatepassword")]
+    // public IActionResult UpdatePassword(int userId, ChangePassword newPassword)
+    // {
+    //     foreach (KeyValuePair<string, ModelStateEntry> error in ModelState)
+    //     {
+    //         Console.WriteLine("********** ERROR ********");
+    //         Console.WriteLine($"Field: {error.Key}");
+    //         foreach (ModelError err in error.Value.Errors)
+    //         {
+    //             Console.WriteLine($"Error: {err.ErrorMessage}");
+    //         }
+    //     }
+
+    //     if (ModelState.IsValid)
+    //     {
+    //         User? UserInDb = _context.Users.Include(user => user.UserId == userId).FirstOrDefault(user => user.Email == newPassword.ConfirmEmail);
+    //         newPassword.ConfirmEmail = UserInDb.Email;
+    //         // Verify the user exists
+    //         if (UserInDb == null)
+    //         {
+    //             ModelState.TryAddModelError("CurrentPassword", "Password must match Current Password");
+    //             return View("ChangePassword", UserInDb);
+    //         }
+    //         PasswordHasher<ChangePassword> hasher = new PasswordHasher<ChangePassword>();
+    //         var result = hasher.VerifyHashedPassword(newPassword, UserInDb.Password, newPassword.CurrentPassword);
+    //         if (result == 0)
+    //         {
+    //             ModelState.AddModelError("CurrrentPassword", "Password");
+    //             return RedirectToAction("ChangePassword", UserInDb);
+    //         }
+
+    //         return RedirectToAction("Messages", "Message");
+    //     }
+
+    //     return ChangePassword(userId);
+    // }
+
 
     // Logout
     [HttpPost("logout")]

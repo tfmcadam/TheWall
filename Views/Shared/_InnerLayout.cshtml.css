@@ -42,10 +42,16 @@ button.accept-policy {
 }
 
 .footer {
+    background: linear-gradient(rgb(216, 209, 209), rgb(44, 50, 130));
     position: absolute;
+    color: black;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+}
+
+.backColor {
+    background: linear-gradient(rgb(242, 244, 255), rgb(44, 50, 130));
 }
 

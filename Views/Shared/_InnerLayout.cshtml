@@ -21,7 +21,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="backColor navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <h4>
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Wall</a>
@@ -40,7 +40,7 @@
                         </li>
                     </ul>
                     <div class="dropdown">
-                        <button onclick="myFunction()" class="dropbtn">My Account</button>
+                        <button onclick="myFunction()" class="dropbtn btn">My Account</button>
                         <div id="myDropdown" class="dropdown-content">
                             <a asp-area="" asp-controller="Home"
                             asp-route-userId="@userId"
@@ -66,8 +66,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer">
+        <div class="container text-dark">
             &copy; 2023 - The Wall
         </div>
     </footer>
