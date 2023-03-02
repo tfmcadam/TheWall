@@ -5,7 +5,7 @@
 @model MessageModel
 
 <div>
-    <h1 class="text-center">Welcome, <img class="userImage" src="@Model.User.UserImg" alt="User" srcset="">
+    <h1 class="text-center text-gradient">Welcome, <img class="userImage" src="@Model.User.UserImg" alt="User" srcset="">
         @Model.User.FirstName @Model.User.LastName</h1>
 
 
@@ -39,7 +39,7 @@
 
             <a class="btn m-2" data-bs-toggle="collapse" href="#collapseExample_@m.MessageId" role="button"
                 aria-expanded="false" aria-controls="collapseExample_@m.MessageId">
-                See Comments
+                See  @m.UserComments.Count Comments
             </a>
             <div class="collapse" id="collapseExample_@m.MessageId">
                 @foreach (Comment c in Model.UserComments)

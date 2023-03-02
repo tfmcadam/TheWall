@@ -55,3 +55,10 @@ button.accept-policy {
     background: linear-gradient(rgb(242, 244, 255), rgb(44, 50, 130));
 }
 
+.text-gradient {
+    color: white;
+    /* background: -webkit-linear-gradient(rgb(242, 244, 255), rgb(44, 50, 130));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; */
+}
+

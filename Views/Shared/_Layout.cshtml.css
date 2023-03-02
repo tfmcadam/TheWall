@@ -42,6 +42,7 @@ button.accept-policy {
 .footer {
   background: linear-gradient(rgb(242, 244, 255), rgb(44, 50, 130));
   position: absolute;
+  opacity: .9;
   bottom: 0;
   width: 100%;
   white-space: nowrap;

@@ -14,7 +14,8 @@ html {
 }
 
 body {
-  background: linear-gradient(rgb(242, 244, 255), rgb(15, 19, 80));
+  /* background: linear-gradient(rgb(242, 244, 255), rgb(15, 19, 80)); */
+  background-color: #000;
   /* background-image: url('../WoodenWall.jpg'); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -26,7 +27,8 @@ body {
   top: 26%;
   left: 25%;
   width: 50%;
-  border: 4px solid black;
+  /* border: 4px solid black; */
+  border: 4px solid rgb(242, 242, 248);
   border-radius: 25px;
   background: linear-gradient(rgb(242, 244, 255), rgb(44, 50, 130));
   padding: 3%;
@@ -242,4 +244,11 @@ vertical-align: middle;
 .active:after {
   content: "\2796";
   /* Unicode character for "minus" sign (-) */
+}
+
+.text-gradient {
+  /* color: white; */
+  background: -webkit-linear-gradient(rgb(242, 244, 255), rgb(44, 50, 130));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
 }
