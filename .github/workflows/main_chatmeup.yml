@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'ChatMeUp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD20DBFE2EBB47F589B06199940E1AA4 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_38F73C783D6A41568A899F6280118C6A }}
           package: .
