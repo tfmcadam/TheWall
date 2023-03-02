@@ -40,6 +40,7 @@ public class MessageController : Controller
         return View("Messages", MyModel);
     }
 
+    
 // Create Message route
     [SessionCheck]
     [HttpPost("messages/create")]

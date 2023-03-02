@@ -17,7 +17,7 @@
         @*backColor border border-dark rounded mt-3 shadow *@
         <div class="messageCard m-2">
             <div class="d-flex justify-content-between m-2">
-                <p class="mt-2 ms-2">Posted by: <img class="userImagePost" src="@m.User.UserImg" alt="User Image"> <a
+                <p class="mt-2 ms-2"><img class="userImagePost" src="@m.User.UserImg" alt="User Image"> <a
                         href="user/@m.User.UserId">@m.User.FirstName </a></p>
                 <p class="ms-2 time-elapsed" data-posted-at="@m.CreatedAt" id="timer"></p>
             </div>

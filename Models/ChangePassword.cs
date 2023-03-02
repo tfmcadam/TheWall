@@ -14,7 +14,7 @@ public class ChangePassword
 
     [Required]
     [DataType(DataType.Password)]
-    [Display(Name = "New password")]
+    [Display(Name = "New Password")]
     public string NewPassword {get;set;}
 
     [Required]
